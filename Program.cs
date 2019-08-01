@@ -39,6 +39,16 @@ namespace Ulearn___1_Lesson
                 Example2();
                 goto vibor;
             }
+            if (op.KeyChar == 51 || op.KeyChar == 99) //выбирается клавиша 3 с клавиатуры или с нампада.
+            {
+                Example3();
+                goto vibor;
+            }
+            if (op.KeyChar == 52 || op.KeyChar == 100) //выбирается клавиша 4 с клавиатуры или с нампада.
+            {
+                Example4();
+                goto vibor;
+            }
             if (op.KeyChar == 27) //выбирается клавиша ESC.
             {
                 Environment.Exit(0);
@@ -84,5 +94,91 @@ namespace Ulearn___1_Lesson
             Console.ReadKey();
             return;
         }
+        public static void Example3()
+        {
+            Console.Clear();
+            Console.WriteLine("Задание 3: Задано время Н часов (ровно). Вычислить угол в градусах между часовой и минутной стрелками. Например, 5 часов -> 150 градусов, 20 часов -> 120 градусов. Не использовать циклы.");
+            Console.WriteLine("\nСудя по примерам в задании имеется ввиду именно острый угол между минутной стрелкой и часовой");
+            Console.WriteLine("\nВведите число от 0 до 23 и нажмите Enter");
+            bool f = Int32.TryParse(Console.ReadLine(), out int chas);
+            if (f && chas >=0 && chas<=23)
+            {
+                int ugol = 0;
+                if (chas >= 0 && chas < 12)
+                {
+                    if (chas >= 0 && chas <= 6)
+                    {
+                        ugol = chas * 30;
+                    }
+                    else
+                    {
+                        ugol = (12 - chas) * 30;
+                    }
+                }
+                else
+                {
+                    if (chas >= 12 && chas <= 18)
+                    {
+                        ugol = (chas - 12) * 30;
+                    }
+                    else
+                    {
+                        ugol = (24 - chas) * 30;
+                    }
+                }
+                Console.WriteLine("\nУгол в градусах между часовой и минутной стрелкой будет равен: {0}", ugol); 
+            }
+            else
+            {
+                Console.WriteLine("\nНеверный ввод, введите целое число от 0 до 23");
+            }
+            Console.WriteLine("\n\nДля продолжения нажмите любую клавишу...");
+            Console.ReadKey();
+            return;
+        }
+        public static void Example4()
+        {
+            Console.Clear();
+            Console.WriteLine("Задание 4: Найти количество чисел меньших N, которые имеют простые делители X или Y.");
+            int N = Vvodint("Введите целое положительное число N и нажмите Enter");
+            int X = Vvodint("Введите целое положительное число X и нажмите Enter");
+            int Y = Vvodint("Введите целое положительное число Y и нажмите Enter");
+            int a = N / X;
+            int b = N / Y;
+            int c = N / (X * Y);
+            if (N == X)
+            {
+                a = 0;
+            }
+            if (N == Y)
+            {
+                b = 0;
+            }
+            Console.WriteLine("\n\nКоличество чисел кратных {0} или {1}, в диапазоне от 0 до {2} равно {3}", X, Y, N, a+b-c);
+            Console.WriteLine("\n\nДля продолжения нажмите любую клавишу... ");
+            Console.ReadKey();
+            return;
+        }
+        /// <summary>
+        /// Преобразует введенное число в INT, с обработкой ошибки преобразования и выводит перед вводом числа заданный текст
+        /// </summary>
+        /// <param name="text">Передаваемый текст, для выввода перед вводом числа</param>
+        /// <returns></returns>
+        public static int Vvodint(string text)
+        {
+            s:
+            Console.WriteLine("\n{0}", text);
+            bool f = Int32.TryParse(Console.ReadLine(), out int vvod);
+            if (!f)
+            {
+                Console.WriteLine("\nНеверный ввод");
+                goto s;
+            }
+            else
+            {
+                return vvod;
+            }
+        }
+
     }
 }
