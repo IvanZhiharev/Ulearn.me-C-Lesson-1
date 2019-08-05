@@ -49,6 +49,11 @@ namespace Ulearn___1_Lesson
                 Example4();
                 goto vibor;
             }
+            if (op.KeyChar == 53 || op.KeyChar == 101) //выбирается клавиша 5 с клавиатуры или с нампада.
+            {
+                Example5();
+                goto vibor;
+            }
             if (op.KeyChar == 27) //выбирается клавиша ESC.
             {
                 Environment.Exit(0);
@@ -179,6 +184,31 @@ namespace Ulearn___1_Lesson
                 return vvod;
             }
         }
+        public static void Example5()
+        {
+            Console.Clear();
+            Console.WriteLine("Задание 5: Найти количество високосных лет на отрезке [a, b] не используя циклы.");
+            Console.WriteLine("данный алгоритм работает только с нашей эрой, поэтому вводите только положительные целые числа");
+            int a = Vvodint("Введите число a и нажмите Enter");
+            int b = Vvodint("Введите число и и нажмите Enter");
+            //рассчет количества годов делящихся на 400
+            double x2 = Convert.ToDouble(a) / 400;
+            int x1 = Convert.ToInt32(Math.Ceiling (x2));
+            int x = 1 - x1 + b/400 ;
+            //рассчет количества годов делящихся на 100
+            double y2 = Convert.ToDouble(a) / 100;
+            int y1 = Convert.ToInt32(Math.Ceiling(y2));
+            int y = 1 - y1 + b / 100;
+            //рассчет количества годов делящихся на 4
+            double z2 = Convert.ToDouble(a) / 4;
+            int z1 = Convert.ToInt32(Math.Ceiling(z2));
+            int z = 1 - z1 + b / 4;
+            int q = z - y + x;
 
+            Console.WriteLine("\n\nКоличесво високосных лет в интервале между {0} и {1} годами = {2}", a, b, q);
+            Console.WriteLine("\n\nДля продолжения нажмите любую клавишу... ");
+            Console.ReadKey();
+            return;
+        }
     }
 }
