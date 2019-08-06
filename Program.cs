@@ -16,7 +16,6 @@ namespace Ulearn___1_Lesson
             Console.ReadKey();
             Console.Clear();
             NomerZad();
-
         }
         /// <summary>
         /// Выбор задания 1-8
@@ -108,7 +107,6 @@ namespace Ulearn___1_Lesson
             String a = Char.ToString(Chislo[0]); // Преобразуем каждый введенный символ в отдельную строку
             String b = Char.ToString(Chislo[1]);
             String c = Char.ToString(Chislo[2]);
-            //int obchislo = int.Parse(c + b + a);
             Console.WriteLine("\nПеревернутое число получится: {0}", int.Parse(c + b + a)); // преобразуем в инт сумму строк
             Console.WriteLine("\n\nДля продолжения нажмите любую клавишу...");
             Console.ReadKey();
@@ -128,22 +126,22 @@ namespace Ulearn___1_Lesson
                 {
                     if (chas >= 0 && chas <= 6)
                     {
-                        ugol = chas * 30;
+                        ugol = chas * 30; //сектор на часах от 00 до 06 часов
                     }
                     else
                     {
-                        ugol = (12 - chas) * 30;
+                        ugol = (12 - chas) * 30; //сектор на часах от 07 до 11 часов
                     }
                 }
                 else
                 {
                     if (chas >= 12 && chas <= 18)
                     {
-                        ugol = (chas - 12) * 30;
+                        ugol = (chas - 12) * 30; //сектор на часах от 12 до 18 часов
                     }
                     else
                     {
-                        ugol = (24 - chas) * 30;
+                        ugol = (24 - chas) * 30; //сектор на часах от 19 до 23 часов
                     }
                 }
                 Console.WriteLine("\nУгол в градусах между часовой и минутной стрелкой будет равен: {0}", ugol); 
@@ -163,10 +161,10 @@ namespace Ulearn___1_Lesson
             int N = Vvodint("Введите целое положительное число N и нажмите Enter");
             int X = Vvodint("Введите целое положительное число X и нажмите Enter");
             int Y = Vvodint("Введите целое положительное число Y и нажмите Enter");
-            int a = N / X;
-            int b = N / Y;
-            int c = N / (X * Y);
-            if (N == X)
+            int a = N / X; //считаем количество чисел делящихся на Х
+            int b = N / Y; //считаем количество чисел делящихся на У
+            int c = N / (X * Y); //считаем количество общих числе делящихся и на Х и на У
+            if (N == X) // обработка краев диапазона
             {
                 a = 0;
             }
@@ -218,7 +216,7 @@ namespace Ulearn___1_Lesson
             double z2 = Convert.ToDouble(a) / 4;
             int z1 = Convert.ToInt32(Math.Ceiling(z2));
             int z = 1 - z1 + b / 4;
-            int q = z - y + x;
+            int q = z - y + x; //считаем общее количество лет
             Console.WriteLine("\n\nКоличесво високосных лет в интервале между {0} и {1} годами = {2}", a, b, q);
             Console.WriteLine("\n\nДля продолжения нажмите любую клавишу... ");
             Console.ReadKey();
