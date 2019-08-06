@@ -54,6 +54,21 @@ namespace Ulearn___1_Lesson
                 Example5();
                 goto vibor;
             }
+            if (op.KeyChar == 54 || op.KeyChar == 102) //выбирается клавиша 6 с клавиатуры или с нампада.
+            {
+                Example6();
+                goto vibor;
+            }
+            if (op.KeyChar == 55 || op.KeyChar == 103) //выбирается клавиша 7 с клавиатуры или с нампада.
+            {
+                Example7();
+                goto vibor;
+            }
+            if (op.KeyChar == 56 || op.KeyChar == 104) //выбирается клавиша 8 с клавиатуры или с нампада.
+            {
+                Example8();
+                goto vibor;
+            }
             if (op.KeyChar == 27) //выбирается клавиша ESC.
             {
                 Environment.Exit(0);
@@ -204,8 +219,81 @@ namespace Ulearn___1_Lesson
             int z1 = Convert.ToInt32(Math.Ceiling(z2));
             int z = 1 - z1 + b / 4;
             int q = z - y + x;
-
             Console.WriteLine("\n\nКоличесво високосных лет в интервале между {0} и {1} годами = {2}", a, b, q);
+            Console.WriteLine("\n\nДля продолжения нажмите любую клавишу... ");
+            Console.ReadKey();
+            return;
+        }
+        /// <summary>
+        /// Возвращает число типа double, преобразованное из введенной строки, с обработкой ощибки перевода
+        /// </summary>
+        /// <param name="text">Текст, выводимый на экран перед вводом</param>
+        /// <returns></returns>
+        public static double Vvoddouble(string text)
+        {
+        s:
+            Console.WriteLine("\n{0}", text);
+            bool f = Double.TryParse(Console.ReadLine(), out double vvod);
+            if (!f)
+            {
+                Console.WriteLine("\nНеверный ввод");
+                goto s;
+            }
+            else
+            {
+                return vvod;
+            }
+        }
+        public static void Example6()
+        {
+            Console.Clear();
+            Console.WriteLine("Задание 6: Посчитать расстояние от точки до прямой, заданной двумя разными точками.");
+            double x1 = Vvoddouble("Введите координату Х первой точки прямой и нажмите Enter");
+            double y1 = Vvoddouble("Введите координату Y первой точки прямой и нажмите Enter");
+            double x2 = Vvoddouble("Введите координату Х второй точки прямой и нажмите Enter");
+            double y2 = Vvoddouble("Введите координату Y второй точки прямой и нажмите Enter");
+            double x3 = Vvoddouble("Введите координату Х точки, от которой необходимо посчитать расстояние до прямой и нажмите Enter");
+            double y3 = Vvoddouble("Введите координату Y точки, от которой необходимо посчитать расстояние до прямой и нажмите Enter");
+            //Рассчет длин сторон треугольника, образуемого точками
+            double a = Math.Sqrt(Math.Pow(y2 - y1, 2) + Math.Pow(x2 - x1, 2));
+            double b = Math.Sqrt(Math.Pow(y2 - y3, 2) + Math.Pow(x2 - x3, 2));
+            double c = Math.Sqrt(Math.Pow(y1 - y3, 2) + Math.Pow(x1 - x3, 2));
+            double p = (a + b + c) / 2; //полупериметр треугольника
+            double h = Math.Sqrt(p*(p-a)*(p-b)*(p-c)) * 2 / a; //рассчет высоты треугольника, она же и есть расстояние от точки до прямой
+            Console.WriteLine("\n\nРасстояние от точки до прямой равно {0}", h);
+            Console.WriteLine("\n\nДля продолжения нажмите любую клавишу... ");
+            Console.ReadKey();
+            return;
+        }
+        public static void Example7()
+        {
+            Console.Clear();
+            Console.WriteLine("Задание 7: Найти вектор, параллельный прямой. Перпендикулярный прямой. Прямая задана коэффициентами уравнения прямой.");
+            Console.WriteLine("\nПрямая L задана уравнением: Ax+By+C=0");
+            double A = Vvoddouble("Введите коэффициент А уравнения прямой и нажмите Enter");
+            double B = Vvoddouble("Введите коэффициент B уравнения прямой и нажмите Enter");
+            double C = Vvoddouble("Введите коэффициент C уравнения прямой и нажмите Enter");
+            Console.WriteLine("\n\nНаправляющий (параллельный) вектор - \u0100 прямой L будет следующим: ({0}, {1})", -B, A);
+            Console.WriteLine("\nНормальный вектор (перпендикулярный) N прямой L будет следующим: ({0}, {1})", A, B);
+            Console.WriteLine("\n\nДля продолжения нажмите любую клавишу... ");
+            Console.ReadKey();
+            return;
+        }
+        public static void Example8()
+        {
+            Console.Clear();
+            Console.WriteLine("Задание 8: Дана прямая L и точка A. Найти точку пересечения прямой L с перпендикулярной ей прямой P, проходящей через точку A. Можете считать, что прямая задана либо двумя точками, либо коэффициентами уравнения прямой — как вам удобнее.");
+            Console.WriteLine("\nПрямая L задана уравнением: Ax+By+C=0");
+            double A = Vvoddouble("Введите коэффициент А уравнения прямой и нажмите Enter");
+            double B = Vvoddouble("Введите коэффициент B уравнения прямой и нажмите Enter");
+            double C = Vvoddouble("Введите коэффициент C уравнения прямой и нажмите Enter");
+            Console.WriteLine("\nТочка А задана двумя координатами.");
+            double x1 = Vvoddouble("Введите координату Х точки A и нажмите Enter");
+            double y1 = Vvoddouble("Введите координату Y точки A и нажмите Enter");
+            //Рассчет координат по специально расчитанным формалам из математики
+            double x = (B*B*x1-A*B*y1-C*A)/(A*A+B*B);
+            double y = y1-B*x1/A+B*((B*B*x1-A*B*y1-C*A)/(A*A+B*B))/A;
+            Console.WriteLine("\n\nКоординаты точки пересечения: {0} , {1}", x, y);
             Console.WriteLine("\n\nДля продолжения нажмите любую клавишу... ");
             Console.ReadKey();
             return;
